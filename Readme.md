@@ -5,11 +5,15 @@ SceneKit programs can be prototyped in Swift playgrounds. However, macOS always 
 The programmer has 2 options when assigning an appropriate object to the "liveView" property of a Swift playground's current PlaygroundPage: 
 
 a) an instance of NSView or
+
 b) an instance of NSViewController.
+
 
 If alternative a) is chosen, then all the relevant tasks must be performed during the instantiation of the view object. (If the view is an instance of NSOpenGLView, the method prepareOpenGL may be overridden to perform most of those tasks.)
 
+
 If an instance of a sub-class of NSViewController is created, there are 2 methods named "viewDidLoad" and "viewWillAppear" which can be overridden by a sub-class of NSViewController to perform further initialisation and other tasks. Code to perform tasks immediately after the setting up of an instance of NSView and assigning it to the view controller's view property will be included in the method "viewDidLoad". The method "viewWillAppear" will have code to perform tasks prior to its view controller's view getting added to the view hierarchy.
+
 
 Normally, a macOS application instantiates its view(s) by loading them from an Interface Builder file (xibs or storyboards). The loading of the nib can be automatic in macOS 10.10 or later.
 
@@ -24,16 +28,21 @@ Toyball.playground: Demonstrates procedural texturing in a SceneKit environment 
 
 ![screenshot](Images/toyball.gif)
 
+
 ColoredCube.playground: Demonstrates the well-known cube with 6 faces of different colours. The textures of each face of the cube is instantiated by invoking a geometry shader. The geometry shader using layered rendering and (geometry shader) instancing creates the cubemap texture in a single pass.
 
 ![screenshot](Images/ColoredCube.gif)
+
 
 TesellateTeapot.playground: Inputs 32 Bezier Surface patches each with 16 control points; each patch is sub-divided into tiny triangles. The patch normals are computed and passed to the fragment shader for lighting effects.
 
 ![screenshot](Images/TessTeapot.png)
 
+
 Requirements:
+
 XCode 8.x running on macOS 10.12 or later.
+
 (XCode 8.0 can run on macOS 10.11.x)
 
 
