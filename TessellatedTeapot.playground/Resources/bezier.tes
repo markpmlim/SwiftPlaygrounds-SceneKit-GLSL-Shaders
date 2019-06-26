@@ -2,14 +2,14 @@
 layout(quads, ccw) in;
 // No differentiation is performed ie no derivatives are used
 
-out vec3 normal;        // in view space
-out vec3 vpos;          // in view space
+out vec3 normal;            // in view space
+out vec3 vpos;              // in view space
 out vec2 uv;
 
 uniform vec3 norm_scale;
 
 uniform mat4 MVP;
-uniform mat4 NormalMatrix;			// SceneKit will pass a mat4
+uniform mat4 NormalMatrix;  // SceneKit will pass a mat4
 uniform mat4 ModelViewMatrix;
 
 vec3 bezier_patch(float u, float v);
@@ -27,16 +27,14 @@ void main()
     uv = gl_TessCoord.xy;
 
     // NB. gl_Position is calculated here rather than in the vertex shader
-    gl_Position = MVP * vec4(pos, 1.0);                         // in clip space
-    vpos = (ModelViewMatrix * vec4(pos, 1.0)).xyz;              // in view space
+    gl_Position = MVP * vec4(pos, 1.0);                 // in clip space
+    vpos = (ModelViewMatrix * vec4(pos, 1.0)).xyz;      // in view space
 }
 
 /*
  u and v are tessellation coords of the patch. It's use to determine the output vertex's
  position when combined with gl_Position values in gl_out array of the tcs which is of
  course passed in gl_in array of the tes
-
- Ref: Ex 9.9 pg 550 (502) OGL8
 */
 
 vec3 bezier_patch(float u, float v)

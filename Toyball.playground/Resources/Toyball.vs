@@ -12,17 +12,17 @@
 
 layout( location = 0 ) in vec4 vertexPosition;
 
-uniform vec4 ballCenter;		// ball center in modelling (object) coordinates
+uniform vec4 ballCenter;        // ball center in modelling (object) coordinates
 uniform mat4 modelViewMatrix;
 uniform mat4 mvpMatrix;
 
 out vec3 ocPosition;
-out vec4 ecPosition;			// surface position in eye(view) coordinates
-flat out vec4 ecBallCenter;		// ball center in eye(view) coordinates
+out vec4 ecPosition;            // surface position in eye(view) coordinates
+flat out vec4 ecBallCenter;     // ball center in eye(view) coordinates
 
 void main(void)
 { 
-    ocPosition	 = vertexPosition.xyz;
+    ocPosition   = vertexPosition.xyz;
     ecPosition   = modelViewMatrix * vertexPosition;
     ecBallCenter = modelViewMatrix * ballCenter;
 

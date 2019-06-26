@@ -34,6 +34,6 @@ void main()
         gs_out.color = faceColor[gl_InvocationID];
         gl_Layer = gl_InvocationID;
         EmitVertex();
-   }
+    }
     EndPrimitive();
 }

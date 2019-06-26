@@ -6,7 +6,7 @@ uniform mat4 MVP = mat4(1);
 
 out VS_FS
 {
-	smooth vec3 cubemap_texcoord;
+    smooth vec3 cubemap_texcoord;
 } vs_out;
 
 void main()

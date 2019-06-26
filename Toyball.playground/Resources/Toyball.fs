@@ -10,15 +10,15 @@
 #version 330
 
 
-uniform vec4 HalfSpace[5];	// half-spaces used to define star pattern
+uniform vec4 HalfSpace[5];  // half-spaces used to define star pattern
 uniform float StripeWidth;
 uniform float InOrOutInit = -3.0;
 uniform float FWidth = 0.005;
 uniform vec4 StarColor;
 uniform vec4 StripeColor;
 uniform vec4 BaseColor;
-uniform vec4 LightDir;		// light direction, should be normalized
-uniform vec4 HVector;		// reflection vector for infinite light
+uniform vec4 LightDir;      // light direction, should be normalized
+uniform vec4 HVector;       // reflection vector for infinite light
 
 uniform vec4 SpecularColor;
 uniform float SpecularExponent;
@@ -26,9 +26,9 @@ uniform float Ka = 0.3;
 uniform float Kd = 0.7;
 uniform float Ks = 0.4;
 
-in vec4 ecPosition;			// surface position in eye(view) coordinates
-in vec3 ocPosition;			// surface position in object coordinates
-flat in vec4 ecBallCenter;	// ball center in eye(view) coordinates
+in vec4 ecPosition;         // surface position in eye(view) coordinates
+in vec3 ocPosition;         // surface position in object coordinates
+flat in vec4 ecBallCenter;  // ball center in eye(view) coordinates
 
 out vec4 FragColor;
 
@@ -42,12 +42,12 @@ float srgbToLinear(float c) {
 
 void main()
 {
-    vec3 normal;			// Analytically computed normal
-    vec4 pShade;			// Point in shader space
-    vec4 surfColor;			// Computed color of the surface
-    float intensity;		// Computed light intensity
-    vec4 distance;			// Computed distance values
-    float inorout;			// Counter for classifying star pattern
+    vec3 normal;            // Analytically computed normal
+    vec4 pShade;            // Point in shader space
+    vec4 surfColor;         // Computed color of the surface
+    float intensity;        // Computed light intensity
+    vec4 distance;          // Computed distance values
+    float inorout;          // Counter for classifying star pattern
 
     pShade.xyz = normalize(ocPosition.xyz);
     pShade.w = 1.0;
@@ -78,7 +78,7 @@ void main()
     normal = normalize(ecPosition.xyz-ecBallCenter.xyz);
 
     // Per-fragment diffuse lighting
-    intensity = Ka;			// ambient
+    intensity = Ka;         // ambient
     intensity += Kd * clamp(dot(LightDir.xyz, normal), 0.0, 1.0);
     surfColor *= intensity;
 
