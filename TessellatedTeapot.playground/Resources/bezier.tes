@@ -66,22 +66,22 @@ vec3 bezier_patch_norm(float u, float v)
     return cross(tang, bitan) * norm_scale;
 }
 
-// i=0,1,2,3, x=[0.0, 1.0]
+// i=0,1,2,3; x=[0.0, 1.0]
 float bernstein(int i, float x)
 {
     float invx = 1.0 - x;
 
     if (i == 0)
     {
-        return invx * invx * invx;  // (i-x)^3
+        return invx * invx * invx;  // (1-x)^3
     }
     if (i == 1)
     {
-        return 3 * x * invx * invx; // 3x(i-x)^2
+        return 3 * x * invx * invx; // 3x(1-x)^2
     }
     if (i == 2)
     {
-        return 3 * x * x * invx;    // 3x^2(i-x)
+        return 3 * x * x * invx;    // 3x^2(1-x)
     }
     return x * x * x;               // x^3 (i=3)
 }
